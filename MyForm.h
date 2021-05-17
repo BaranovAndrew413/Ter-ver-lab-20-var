@@ -5,7 +5,7 @@
 #include"ctime"
 #include<vector>
 #include <msclr\marshal_cppstd.h>
-
+#include<algorithm>
 
 
 std::vector<double> v;
@@ -899,6 +899,8 @@ private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^
 	v.push_back(-pow(2, 0.25));
 	label10->Text = Convert::ToString(-pow(2, 0.25));
 	label9->Text = Convert::ToString(find_bor(a));
+	double* yy = new double[n];
+	
 
 	for (int i = 0; i < n; i++)
 	{
@@ -935,6 +937,21 @@ private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^
 		j++;
 	}
 	*/
+	for (int i = 0; i < n; i++)
+	{
+		yy[i] = rand_search();
+	}
+	std::sort(yy, yy + (n));
+	for (int i = 0; i < n; i++)
+	{
+		dataGridView1->Rows[i]->Cells[2]->Value = yy[i];
+	}
+	for (int i = 0; i < n; i++)
+	{
+		dataGridView1->Rows[i]->Cells[0]->Value = i + 1;
+		arr[i] = get_continuous_value(yy[i], a);
+		sum += arr[i];
+	}
 	int i = 0;
 	while (i < n)
 	{
